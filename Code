@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sayı Tahmin Oyunu</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+}
+    input {
+      padding: 10px;
+      font-size: 18px;
+}
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 10px;
+}
+    #sonuc {
+      margin-top: 20px;
+      font-size: 20px;
+}
+  </style>
+</head>
+<body>
+  <h1>🎯 Sayı Tahmin Oyunu</h1>
+  <p>1 ile 100 arasında tuttuğum sayıyı tahmin et!</p>
+  <input type="number" id="tahmin" placeholder="Tahminin">
+  <button onclick="kontrolEt()">Tahmin Et</button>
+  <div id="sonuc"></div>
 
+  <script>
+    const hedefSayi = Math.floor(Math.random() * 100) + 1;
+    let deneme = 0;
+
+    function kontrolEt() {
+      const tahmin = parseInt(document.getElementById('tahmin').value);
+      const sonuc = document.getElementById('sonuc');
+      deneme++;
+
+      if (isNaN(tahmin)) {
+        sonuc.textContent = "Lütfen geçerli bir sayı gir.";
+} else if (tahmin < hedefSayi) {
+        sonuc.textContent = "Daha büyük bir sayı dene 🔼";
+} else if (tahmin> hedefSayi) {
+        sonuc.textContent = "Daha küçük bir sayı dene 🔽";
+} else {
+        sonuc.textContent = `🎉 Doğru tahmin! ${deneme} denemede ${hedefSayi} sayısını buldun.`;
+}
+}
+  </script>
+</body>
+</html>
