@@ -5,75 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sayı Tahmin Oyunu</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ececec, #d9f1ff);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-}
-
-    h1 {
-      font-size: 32px;
-      color: #333;
-      margin-bottom: 10px;
-}
-
-    p {
-      font-size: 18px;
-      margin-bottom: 20px;
-      color: #555;
-}
-
-    input, button {
-      padding: 10px;
-      font-size: 18px;
-      border-radius: 8px;
-      margin: 8px;
-      border: none;
-      outline: none;
-      transition: 0.3s;
-}
-
-    input {
-      border: 2px solid #999;
-      width: 80%;
-      max-width: 300px;
-}
-
-    input:focus {
-      border-color: #00aaff;
-}
-
-    button {
-      background-color: #00aaff;
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-    button:hover {
-      background-color: #0088cc;
-}
-
-    #sonuc {
-      font-size: 20px;
-      margin-top: 20px;
-      font-weight: bold;
-      color: #444;
-}
-
-    #haklar {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #777;
-}
+    /*... senin CSS kodun aynen burada kalıyor... */
   </style>
 </head>
 <body>
+  <!-- HTML içeriğin aynı kalıyor -->
   <h1>🎯 Sayı Tahmin Oyunu</h1>
   <p>1 ile 100 arasında tuttuğum sayıyı tahmin et!</p>
   <input type="number" id="tahmin" placeholder="Tahminin">
@@ -82,6 +18,7 @@
   <div id="haklar">Kalan Hakkın: 5</div>
   <div id="sonuc"></div>
 
+  <!-- JavaScript kodunu <body> bitmeden önce ekle -->
   <script>
     let hedefSayi, deneme;
 
@@ -94,6 +31,8 @@
 }
 
     function kontrolEt() {
+      if (deneme>= 5) return;
+
       const tahmin = parseInt(document.getElementById('tahmin').value);
       const sonuc = document.getElementById('sonuc');
 
@@ -103,7 +42,6 @@
 }
 
       deneme++;
-
       const kalanHak = 5 - deneme;
       document.getElementById('haklar').textContent = `Kalan Hakkın: ${kalanHak}`;
 
@@ -116,8 +54,9 @@
         return;
 }
 
-      if (deneme>= 5) {
-        sonuc.textContent = `😢 Üzgünüm, kaybettin. Doğru sayı ${hedefSayi} idi.`;
+      if (deneme === 5) {
+        sonuc.textContent = `😢 Üzgünüm, kaybettin. Doğru sayı ${hedefSayi} idi. Oyun yeniden başlıyor...`;
+        setTimeout(yenidenBaslat, 2000);
 }
 }
 
