@@ -5,22 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sayı Tahmin Oyunu</title>
   <style>
-    <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-image: url('math.jpeg'); /* 👈 Burada olmalı */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  button {
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-  /* Diğer CSS kuralların burada */
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+}
   </style>
 </head>
 <body>
