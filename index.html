@@ -2,25 +2,74 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sayı Tahmin Oyunu</title>
   <style>
     body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 20px;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ececec, #d9f1ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
 }
-    input {
+
+    h1 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 10px;
+}
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #555;
+}
+
+    input, button {
       padding: 10px;
       font-size: 18px;
+      border-radius: 8px;
+      margin: 8px;
+      border: none;
+      outline: none;
+      transition: 0.3s;
 }
+
+    input {
+      border: 2px solid #999;
+      width: 80%;
+      max-width: 300px;
+}
+
+    input:focus {
+      border-color: #00aaff;
+}
+
     button {
-      padding: 10px 20px;
-      font-size: 18px;
-      margin-top: 10px;
+      background-color: #00aaff;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
+    button:hover {
+      background-color: #0088cc;
+}
+
     #sonuc {
-      margin-top: 20px;
       font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #444;
+}
+
+    #haklar {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #777;
 }
   </style>
 </head>
@@ -29,27 +78,50 @@
   <p>1 ile 100 arasında tuttuğum sayıyı tahmin et!</p>
   <input type="number" id="tahmin" placeholder="Tahminin">
   <button onclick="kontrolEt()">Tahmin Et</button>
+  <button onclick="yenidenBaslat()">Yeniden Başlat</button>
+  <div id="haklar">Kalan Hakkın: 5</div>
   <div id="sonuc"></div>
 
   <script>
-    const hedefSayi = Math.floor(Math.random() * 100) + 1;
-    let deneme = 0;
+    let hedefSayi, deneme;
+
+    function yenidenBaslat() {
+      hedefSayi = Math.floor(Math.random() * 100) + 1;
+      deneme = 0;
+      document.getElementById('tahmin').value = '';
+      document.getElementById('sonuc').textContent = '';
+      document.getElementById('haklar').textContent = 'Kalan Hakkın: 5';
+}
 
     function kontrolEt() {
       const tahmin = parseInt(document.getElementById('tahmin').value);
       const sonuc = document.getElementById('sonuc');
-      deneme++;
 
       if (isNaN(tahmin)) {
-        sonuc.textContent = "Lütfen geçerli bir sayı gir.";
-} else if (tahmin < hedefSayi) {
-        sonuc.textContent = "Daha büyük bir sayı dene 🔼";
+        sonuc.textContent = "❗ Lütfen geçerli bir sayı gir.";
+        return;
+}
+
+      deneme++;
+
+      const kalanHak = 5 - deneme;
+      document.getElementById('haklar').textContent = `Kalan Hakkın: ${kalanHak}`;
+
+      if (tahmin < hedefSayi) {
+        sonuc.textContent = "🔼 Daha büyük bir sayı dene!";
 } else if (tahmin> hedefSayi) {
-        sonuc.textContent = "Daha küçük bir sayı dene 🔽";
+        sonuc.textContent = "🔽 Daha küçük bir sayı dene!";
 } else {
-        sonuc.textContent = `🎉 Doğru tahmin! ${deneme} denemede ${hedefSayi} sayısını buldun.`;
+        sonuc.textContent = `🎉 Bravo! ${deneme} denemede doğru tahmin ettin: ${hedefSayi}`;
+        return;
+}
+
+      if (deneme>= 5) {
+        sonuc.textContent = `😢 Üzgünüm, kaybettin. Doğru sayı ${hedefSayi} idi.`;
 }
 }
+
+    window.onload = yenidenBaslat;
   </script>
 </body>
 </html>
