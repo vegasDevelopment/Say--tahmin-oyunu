@@ -6,10 +6,23 @@
   <title>Sayı Tahmin Oyunu</title>
   <style>
   button {
-  padding: 8px 20px;          /* Daha ince ve zarif görünüm */
-  font-size: 16px;            /* Metin boyutu biraz küçültüldü */
-  border-radius: 8px;         /* Köşeler hâlâ yumuşak ama daha kompakt */
-  }
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+}
   </style>
 </head>
 <body>
