@@ -1,5 +1,5 @@
 <script>
-let hedefSayi, deneme;
+  let hedefSayi, deneme;
 
   function yenidenBaslat() {
     hedefSayi = Math.floor(Math.random() * 100) + 1;
@@ -10,6 +10,9 @@ let hedefSayi, deneme;
 }
 
   function kontrolEt() {
+    // 6. tahmini engelle
+    if (deneme>= 5) return;
+
     const tahmin = parseInt(document.getElementById('tahmin').value);
     const sonuc = document.getElementById('sonuc');
 
@@ -27,15 +30,13 @@ let hedefSayi, deneme;
 } else if (tahmin> hedefSayi) {
       sonuc.textContent = "🔽 Daha küçük bir sayı dene!";
 } else {
-      sonuc.textContent = `🎉 Bravo! ${deneme} denemede doğru bildin: ${hedefSayi}`;
+      sonuc.textContent = `🎉 Bravo! ${deneme} denemede doğru tahmin ettin: ${hedefSayi}`;
       return;
 }
 
-    if (deneme>= 5) {
-      sonuc.textContent = `😢 Üzgünüm, kaybettin! Doğru sayı ${hedefSayi} idi. Oyun yeniden başlıyor...`;
-
-      // 🔄 2 saniye sonra otomatik yeniden başlat
-      setTimeout(yenidenBaslat, 2000);
+    if (deneme === 5) {
+      sonuc.textContent = `😢 Üzgünüm, kaybettin. Doğru sayı ${hedefSayi} idi. Oyun yeniden başlıyor...`;
+      setTimeout(yenidenBaslat, 2000); // 🔁 2 saniye sonra oyunu sıfırla
 }
 }
 
